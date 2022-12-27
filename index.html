@@ -10,9 +10,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Passion+One&family=Poppins:wght@100;200;300;400&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
     integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
   <meta charset="UTF-8">
@@ -24,141 +24,146 @@
 
 
 <!-- <body class="body"> -->
-  <button class="top hide">
-    <i class="fa-solid fa-arrow-up"></i>
+<button class="top hide">
+  <i class="fa-solid fa-arrow-up"></i>
+</button>
+
+<body class="bg-dark body">
+
+  <div class="loader-div bg-dark">
+    <div class="line-wobble"></div>
+  </div>
+
+  <!-- navbar  -->
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark  ">
+
+    <div class="container-fluid navigation">
+      <a class="navbar-brand" href="#">Crypto Currency</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse " id="navbarNav">
+        <ul class="navbar-nav ms-auto ">
+          <li class="nav-item d-flex flex-row gap-3  ">
+            <a id="home" class="nav-link active" aria-current="page" href="#">Home</a>
+            <a id="about" class="nav-link active" aria-current="page" href="#">About</a>
+            <a id="live-reports" class="nav-link active " aria-current="page" href="#">live Reports</a>
+          </li>
+          <div class="input-group search w-50 float-right">
+            <input type="text" class="form-control search-coins-input" placeholder="search crypto coins"
+              aria-label="search coins" aria-describedby="button-addon2" id="search"
+              onkeyup="filterCoins(search.value)">
+            <button class="btn btn-outline-secondary search-btn " type="button" id="button-addon2">Search</button>
+          </div>
+
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="home hide">
+
+
+    <div class="parallax">
+      <div class="headline">
+        <h1 class="h1 display-1 text-center ">Crypto Currency</h1>
+        <h2 class="h2">By Ohav</h2>
+      </div>
+      <div class="background-section">
+      </div>
+    </div>
+    <div class="select-coins  mt-5">
+      <h5 class="h3 display-5 text-center text-white">Select Up To 5 Coins</h5>
+      <button onclick="removeAllCoins()" type="button" class="btn text-white clearCoins">Clear Coins</button>
+    </div>
+
+    <div class="container-fluid mt-5">
+      <div id="cards" class="d-flex gap-4 flex-wrap justify-content-center mt-5 ">
+
+      </div>
+    </div>
+  </div>
+
+
+  <button id="modalBtn" type="button" class="btn btn-primary hide" data-bs-toggle="modal" data-bs-target="#myModal"
+    data-backdrop='static' data-keyboard='false'>
+    Open modal
   </button>
 
-  <body class="bg-dark body">
+  </div>
+  <div class="not-found hide">
+    <h1>No Coins Found.
+    </h1>
+    <h6> Try searching by coin name (for
+      example : bitcoin) or by coin code name (for example: BTC)</h6>
+  </div>
 
-    <div class="loader-div bg-dark">
-      <div class="line-wobble"></div>
+
+  <div class="text-center mt-5 text-light about hide">
+    <h2 class="about-h2 ">Crypto Currency project by Ohav Eden</h2>
+    <div class="about-div">
+      <p class="about-p">My name is Ohav, i'm a 25 years old full stack developer from
+        the north.
+        In this project you can find up to 50 crypto coins with real-time currency
+        and other analysis with modern and responsive design.
+      </p>
+
     </div>
+    <img class="aboutImg" src="me.jpg" alt="">
+    <div class="social">
+      <a href="https://www.facebook.com/ohav.eden" target="_blank">
+        <i class="fa-brands fa-facebook-f">
+        </i>
+      </a>
+      <a href="https://www.instagram.com/ohav_eden/" target="_blank">
+        <i class="fa-brands fa-instagram"></i>
 
-    <!-- navbar  -->
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark  ">
+      </a>
+      <a href="https://github.com/ohavs" target="_blank">
+        <i class="fa-brands fa-github"></i>
 
-      <div class="container-fluid navigation">
-        <a class="navbar-brand" href="#">Crypto Currency</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+      </a>
+      <a href="https://www.linkedin.com/in/ohav-eden-a5b894224/" target="_blank">
+        <i class="fa-brands fa-linkedin"></i>
+      </a>
+    </div>
+  </div>
+  <!-- /// modal /// -->
 
-        <div class="collapse navbar-collapse " id="navbarNav">
-          <ul class="navbar-nav ms-auto ">
-            <li class="nav-item d-flex flex-row gap-3  ">
-              <a id="home" class="nav-link active" aria-current="page" href="#">Home</a>
-              <a id="about" class="nav-link active" aria-current="page" href="#">About</a>
-              <a id="live-reports" class="nav-link active " aria-current="page" href="#">live Reports</a>
-            </li>
-            <div class="input-group search w-50 float-right">
-              <input type="text" class="form-control search-coins-input" placeholder="search crypto coins" aria-label="search coins"
-                aria-describedby="button-addon2" id="search" onkeyup="filterCoins(search.value)">
-              <button class="btn btn-outline-secondary search-btn " type="button" id="button-addon2">Search</button>
-            </div>
-
-
-          </ul>
+  <div class="modal " id="myModal" data-backdrop="static">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Too many coins</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" data-toggle="modal"
+            data-target="#myModal"></button>
         </div>
-      </div>
-    </nav>
-    
-    <div class="home hide">
-      
-
-      <div class="parallax">
-        <div class="headline">
-          <h1 class="h1 display-1 text-center ">Crypto Currency</h1>
-          <h2 class="h2">By Ohav</h2>
+        <div class="modal-body">
+          You can only select 5 coins. please uncheck one
         </div>
-        <div class="background-section">
-        </div>
-      </div>
-      <div class="select-coins  mt-5">
-        <h5 class="h3 display-5 text-center text-white">Select Up To 5 Coins</h5>
-        <button onclick="removeAllCoins()"  type="button" class="btn text-white clearCoins">Clear Coins</button>
-      </div>
 
-      <div class="container-fluid mt-5">
-        <div id="cards" class="d-flex gap-4 flex-wrap justify-content-center mt-5 ">
+        <div class="modal-body modal-coins">
 
         </div>
-      </div>
-    </div>
-   
-
-    <button id="modalBtn" type="button" class="btn btn-primary hide" data-bs-toggle="modal" data-bs-target="#myModal"
-      data-backdrop='static' data-keyboard='false'>
-      Open modal
-    </button>
-
-    </div>
-    <div class="not-found hide">
-      <h1 >No Coins Found.
-      </h1>
-      <h6> Try searching by coin name (for
-        example : bitcoin)  or by coin code name (for example: BTC)</h6>
-    </div>
-    <div class="text-center mt-5 text-light about hide">
-      <h2 class="about-h2 ">Crypto Currency project by Ohav Eden</h2>
-      <div class="about-div">
-        <p class="about-p">My name is Ohav, i'm a 25 years old full stack developer from
-          the north.
-          In this project you can find up to 50 crypto coins with real-time currency
-          and other analysis with modern and responsive design.
-        </p>
-
-      </div>
-      <img class="aboutImg" src="me.jpg" alt="">
-      <div class="social">
-        <a href="https://www.facebook.com/ohav.eden" target="_blank">
-          <i class="fa-brands fa-facebook-f">
-          </i>
-        </a>
-        <a href="https://www.instagram.com/ohav_eden/" target="_blank">
-          <i class="fa-brands fa-instagram"></i>
-
-        </a>
-        <a href="https://github.com/ohavs" target="_blank">
-          <i class="fa-brands fa-github"></i>
-
-        </a>
-        <a href="https://www.linkedin.com/in/ohav-eden-a5b894224/" target="_blank">
-          <i class="fa-brands fa-linkedin"></i>
-        </a>
-      </div>
-    </div>
-    <!-- /// modal /// -->
-
-    <div class="modal " id="myModal" data-backdrop="static">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title">Too many coins</h4>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" data-toggle="modal" data-target="#myModal"></button>
-          </div>
-          <div class="modal-body">
-            You can only select 5 coins. please uncheck one
-          </div>
-
-          <div class="modal-body modal-coins">
-
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-danger close-modal" data-bs-dismiss="modal" data-toggle="modal" data-target="#myModal">Close</button>
-          </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger close-modal" data-bs-dismiss="modal" data-toggle="modal"
+            data-target="#myModal">Close</button>
         </div>
       </div>
     </div>
-    <div class="liveReports hide ">
-      <h1 class="h3 text-white text-center">No live reports because it is optional and i was lazy :)</h1>
-    </div>
-  
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous">
-    </script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.js" integrity="sha512-nO7wgHUoWPYGCNriyGzcFwPSF+bPDOR+NvtOYy2wMcWkrnCNPKBcFEkU80XIN14UVja0Gdnff9EmydyLlOL7mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="script.js"></script>
-  </body>
+  </div>
+  <div class="liveReports hide ">
+    <h1 class="h3 text-white text-center">No live reports because it is optional and i was lazy :)</h1>
+  </div>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.js"
+    integrity="sha512-nO7wgHUoWPYGCNriyGzcFwPSF+bPDOR+NvtOYy2wMcWkrnCNPKBcFEkU80XIN14UVja0Gdnff9EmydyLlOL7mQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="script.js"></script>
+</body>
 
 </html>
