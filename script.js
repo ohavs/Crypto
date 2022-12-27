@@ -13,26 +13,26 @@ let liveReports = document.getElementById("live-reports")
 
 //pages
 about.addEventListener("click", () => {
-  document.querySelector(".home").classList.add("hidden")
-  document.querySelector(".liveReports").classList.add("hidden")
-  document.querySelector(".about").classList.remove("hidden")
+  document.querySelector(".home").classList.add("hide")
+  document.querySelector(".liveReports").classList.add("hide")
+  document.querySelector(".about").classList.remove("hide")
   $(".search-coins-input").attr("disabled", true)
   $(".search-btn").attr("disabled", true)
 })
 
 home.addEventListener("click", () => {
-  document.querySelector(".home").classList.remove("hidden")
-  document.querySelector(".about").classList.add("hidden")
-  document.querySelector(".liveReports").classList.add("hidden")
+  document.querySelector(".home").classList.remove("hide")
+  document.querySelector(".about").classList.add("hide")
+  document.querySelector(".liveReports").classList.add("hide")
   $(".search-coins-input").attr("disabled", false)
   $(".search-btn").attr("disabled", false)
 })
 liveReports.addEventListener("click", () => {
-  document.querySelector(".home").classList.add("hidden")
-  document.querySelector(".about").classList.add("hidden")
+  document.querySelector(".home").classList.add("hide")
+  document.querySelector(".about").classList.add("hide")
   $(".search-coins-input").attr("disabled", true)
   $(".search-btn").attr("disabled", true)
-  document.querySelector(".liveReports").classList.remove("hidden")
+  document.querySelector(".liveReports").classList.remove("hide")
 })
 
 //loaders
@@ -42,9 +42,9 @@ liveReports.addEventListener("click", () => {
 // });
 
 setTimeout(() => {
-  document.querySelector(".home").classList.remove("hidden")
-  document.querySelector(".loader-div").classList.add("hidden")
-},1500)
+  document.querySelector(".home").classList.remove("hide")
+  document.querySelector(".loader-div").classList.add("hide")
+}, 1500)
 
 $(window).scroll(function () {
   if ($(this).scrollTop() > 800) {
@@ -66,7 +66,7 @@ function getCoins(url) {
     dataType: "json",
     url: url,
     beforeSend: function () {
-        $(".loader").fadeOut("slow");
+      $(".loader").fadeOut("slow");
 
     },
     complete: function () {
@@ -83,12 +83,12 @@ function getCoins(url) {
         }
 
         coinsObj.push(coin)
-        
+
       })
       console.log(coinsObj);
       createCard(coinsObj)
       loadFromLocalStorage(coinsObj)
-     
+
     },
     error: function (error) {
       console.log("error:", error);
@@ -103,27 +103,27 @@ getCoins(url)
 
 function filterCoins(search) {
   let coinCards = document.querySelectorAll(".card")
-  let count=0
-  document.querySelector(".parallax").classList.add("hidden")
-  document.querySelector(".select-coins").classList.add("hidden")
+  let count = 0
+  document.querySelector(".parallax").classList.add("hide")
+  document.querySelector(".select-coins").classList.add("hide")
   coinCards.forEach(card => {
     card.parentElement.classList.add("hide")
-   
+
     if (card.children[2].children[0].children[0].innerHTML.toLowerCase().includes(search) || card.children[2].children[0].children[1].innerHTML.toUpperCase().includes(search)) {
       // card.classList.remove("hide")
       card.parentElement.classList.remove("hide")
       $(".not-found").addClass("hide")
-     
-      count+=1
-    }if(count===0){
+
+      count += 1
+    } if (count === 0) {
       $(".not-found").removeClass("hide")
     }
     // console.log(card.children[2].children[0].children[0].innerHTML); ////coin name
     // console.log(card.children[2].children[0].children[1].innerHTML);  //// coin code name
   })
   if (search === "") {
-    document.querySelector(".parallax").classList.remove("hidden")
-  document.querySelector(".select-coins").classList.remove("hidden")
+    document.querySelector(".parallax").classList.remove("hide")
+    document.querySelector(".select-coins").classList.remove("hide")
 
   }
 }
@@ -160,7 +160,7 @@ function createCard(coinsObj) {
         </div>
       </div>
 
-      <div class="price hidden">
+      <div class="price hide">
       <h6 id="usd ${coin.id.toLowerCase()}" class="h6 usd"></h6>
       <h6 id="eur ${coin.id.toLowerCase()}" class="h6 eur"></h6>
       <h6 id="ils ${coin.id.toLowerCase()}" class="h6 ils"></h6>
@@ -175,7 +175,7 @@ function createCard(coinsObj) {
     } else if (coinsObj[coin] == true) {
       document.querySelectorAll(".coinsCheck").checked = true
     }
-   
+
 
 
     cards.appendChild(card)
@@ -218,14 +218,14 @@ function getPrice(url, btn, usd, eur, ils, id) {
       console.log(prices);
       btn.forEach(button => {
         if (button.id == id) {
-          if(button.innerHTML==`More Info`){
-            button.innerHTML=`Less Info`
+          if (button.innerHTML == `More Info`) {
+            button.innerHTML = `Less Info`
           }
-          
-         else if(button.innerHTML=`Less Info`){
-            button.innerHTML=`More Info`
+
+          else if (button.innerHTML = `Less Info`) {
+            button.innerHTML = `More Info`
           }
-          button.previousElementSibling.classList.toggle("hidden")
+          button.previousElementSibling.classList.toggle("hide")
           usd.innerHTML = `USD: ${prices.usd}$`
           eur.innerHTML = `EUR:${prices.eur}€`
           ils.innerHTML = `ILS:${prices.ils}₪`
@@ -257,13 +257,13 @@ function checkCoins(coinsObj, inputId) {
       if (coinsObj[i].checked == true) {
         checkedCoins.push(coinsObj[i])
         saveToLocalStorage(coinsObj[i])
-      } 
+      }
     }
   }
-  if(toggledInput.checked==false){
+  if (toggledInput.checked == false) {
     console.log(toggledInput);
-    for(let i = 0; i < checkedCoins.length; i++){
-      if(checkedCoins[i].id == toggledInput.id){
+    for (let i = 0; i < checkedCoins.length; i++) {
+      if (checkedCoins[i].id == toggledInput.id) {
         checkedCoins[i].checked = false
         console.log(checkedCoins[i]);
         checkedCoins.splice(i, 1)
@@ -341,7 +341,7 @@ function uncheckCoin(coinsObj, id, checkedCoins) {
     if (id == checkedCoin.id) {
       if (checkedCoin.checked == true) {
         checkedCoin.checked = false
-      } 
+      }
       // else if (checkedCoin.checked == false)
       //   checkedCoin.checked = true
     }
@@ -356,11 +356,11 @@ function uncheckCoin(coinsObj, id, checkedCoins) {
       // console.log(id);
       // console.log(checkedCoins[i].checked);
       // console.log(checkedCoins[i]);
-      if(checkedCoins[i].checked == true){
+      if (checkedCoins[i].checked == true) {
         checkedCoins[i].checked = false
-    
-      } 
-      if(checkedCoins[i].checked == false){
+
+      }
+      if (checkedCoins[i].checked == false) {
         removeFromLocalStorage(checkedCoins[i])
         checkedCoins.splice(i, 1)
       }
@@ -381,87 +381,87 @@ function uncheckCoin(coinsObj, id, checkedCoins) {
 
 
 //local storage methods
-function saveToLocalStorage(checkedCoin){
+function saveToLocalStorage(checkedCoin) {
   let checkedCoinsArray;
-     if(localStorage.getItem("checkedCoinsArray")===null){
-         checkedCoinsArray=[];
-     }
-     else{
-         checkedCoinsArray=JSON.parse(localStorage.getItem("checkedCoinsArray"));
+  if (localStorage.getItem("checkedCoinsArray") === null) {
+    checkedCoinsArray = [];
+  }
+  else {
+    checkedCoinsArray = JSON.parse(localStorage.getItem("checkedCoinsArray"));
+  }
+  checkedCoinsArray.push(checkedCoin);
+  localStorage.setItem("checkedCoinsArray", JSON.stringify(checkedCoinsArray))
+  // console.log(checkedCoinsArray);
+}
+
+
+
+
+
+function loadFromLocalStorage(coinsObj) {
+  let checkedCoinsArray;
+  if (localStorage.getItem("checkedCoinsArray") === null) {
+    checkedCoinsArray = [];
+  }
+  else {
+    checkedCoinsArray = JSON.parse(localStorage.getItem("checkedCoinsArray"));
+    checkedCoins = checkedCoinsArray
+
+    let coinsInputs = document.querySelectorAll(".coinsCheck")
+    // console.group("local storage coins")
+    for (let i = 0; i < coinsObj.length; i++) {
+      for (let j = 0; j < checkedCoinsArray.length; j++) {
+        if (coinsObj[i].id == checkedCoinsArray[j].id) {
+          coinsObj[i].checked = true
+          coinsInputs[i].checked = true
+          // console.log(coinsObj[i].id);
+          // console.log(coinsInputs[i]);
+          //  console.log(coinsInputs[i].id + " input is " + coinsInputs[i].checked);
+          //  console.log(checkedCoinsArray[i] , + " " +"local storage");
         }
-        checkedCoinsArray.push(checkedCoin);
-        localStorage.setItem("checkedCoinsArray",JSON.stringify(checkedCoinsArray))
-        // console.log(checkedCoinsArray);
- }
-
-
-
-
- 
- function loadFromLocalStorage(coinsObj){
-  let checkedCoinsArray;
-  if(localStorage.getItem("checkedCoinsArray")===null){
-      checkedCoinsArray=[];
-  }
-  else{
-      checkedCoinsArray=JSON.parse(localStorage.getItem("checkedCoinsArray"));
-      checkedCoins=checkedCoinsArray
-       
-          let coinsInputs = document.querySelectorAll(".coinsCheck")
-          // console.group("local storage coins")
-          for(let i=0;i<coinsObj.length;i++){
-            for(let j=0;j<checkedCoinsArray.length;j++){
-              if(coinsObj[i].id==checkedCoinsArray[j].id){
-                coinsObj[i].checked=true
-                coinsInputs[i].checked=true
-                // console.log(coinsObj[i].id);
-                // console.log(coinsInputs[i]);
-                      //  console.log(coinsInputs[i].id + " input is " + coinsInputs[i].checked);
-              //  console.log(checkedCoinsArray[i] , + " " +"local storage");
-              }
-            }
-          }
+      }
+    }
 
   }
 }
 
-function removeFromLocalStorage(coinToDelete){
+function removeFromLocalStorage(coinToDelete) {
   let checkedCoinsArray;
 
-  if(localStorage.getItem("checkedCoinsArray")===null){
-      checkedCoinsArray=[]
+  if (localStorage.getItem("checkedCoinsArray") === null) {
+    checkedCoinsArray = []
   }
-  else{
-      checkedCoinsArray=JSON.parse(localStorage.getItem("checkedCoinsArray"));
+  else {
+    checkedCoinsArray = JSON.parse(localStorage.getItem("checkedCoinsArray"));
   }
 
-// console.log(coinToDelete.id + " coin to delete");
- for(let i=0;i<checkedCoinsArray.length;i++){
-  if(coinToDelete.id==checkedCoinsArray[i].id){
-    // console.log(coinToDelete.id);
-    checkedCoinsArray.splice(checkedCoinsArray.indexOf(checkedCoinsArray[i]),1);
+  // console.log(coinToDelete.id + " coin to delete");
+  for (let i = 0; i < checkedCoinsArray.length; i++) {
+    if (coinToDelete.id == checkedCoinsArray[i].id) {
+      // console.log(coinToDelete.id);
+      checkedCoinsArray.splice(checkedCoinsArray.indexOf(checkedCoinsArray[i]), 1);
+    }
   }
- }
   // console.log(checkedCoin);
- localStorage.setItem("checkedCoinsArray",JSON.stringify(checkedCoinsArray));
+  localStorage.setItem("checkedCoinsArray", JSON.stringify(checkedCoinsArray));
 }
 
 
 
-function removeAllCoins(){
+function removeAllCoins() {
   let coinsToggler = document.querySelectorAll(".coinsCheck")
   coinsToggler.forEach((coin) => {
-    coin.checked=false
+    coin.checked = false
     coin.removeAttribute("disabled", "")
   })
-  for(let coin of checkedCoins){
-    coin.checked=false
+  for (let coin of checkedCoins) {
+    coin.checked = false
   }
-  for(let coin of coinsObj){
-    coin.checked=false
+  for (let coin of coinsObj) {
+    coin.checked = false
   }
-  checkedCoins.length=0
-  localStorage.clear() 
+  checkedCoins.length = 0
+  localStorage.clear()
   console.log(checkedCoins);
 }
 
